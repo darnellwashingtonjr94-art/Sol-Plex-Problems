@@ -1,4 +1,4 @@
-# Sol-Plex-Problems
+# Sol-Plex-Problems 🧠🗣️
 
 **Repository Status & Quality**
 [![Last Commit](https://img.shields.io/github/last-commit/credkellar-boop/Sol-Plex-Problems?style=flat-square&logo=github)](https://github.com/credkellar-boop/Sol-Plex-Problems/commits/main)
