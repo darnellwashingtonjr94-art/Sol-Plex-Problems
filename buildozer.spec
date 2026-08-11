@@ -10,3 +10,5 @@ orientation = portrait
 android.permissions = INTERNET
 android.api = 33
 android.minapi = 21
+icon.filename = logo.png
+icon.adaptive_fore.filename = logo.png
