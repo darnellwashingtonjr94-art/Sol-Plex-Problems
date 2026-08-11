@@ -11,22 +11,31 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Dependencies and Buildozer
+      - name: Install System Dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev
-          pip3 install --user --upgrade buildozer cython virtualenv
+          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev \
+            libffi-dev libssl-dev libsqlite3-dev ccache cmake lld build-essential
+
+      - name: Install Buildozer & Pin Cython
+        run: |
+          pip install --upgrade pip setuptools virtualenv
+          pip install "cython<3.0" buildozer
 
       - name: Build APK
         run: |
-          export PATH=$PATH:~/.local/bin
-          yes | buildozer android debug
+          buildozer android debug
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
