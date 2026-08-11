@@ -1,6 +1,5 @@
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 
 KV = '''
@@ -8,22 +7,17 @@ BoxLayout:
     orientation: 'vertical'
     canvas.before:
         Color:
-            rgba: 0.07, 0.07, 0.08, 1  # #131314 Gemini Dark Background
+            rgba: 0.07, 0.07, 0.08, 1
         Rectangle:
             pos: self.pos
             size: self.size
 
-    # Top Header Bar
+    # Header Bar
     BoxLayout:
         size_hint_y: None
         height: '60dp'
         padding: ['16dp', '10dp']
         spacing: '10dp'
-        
-        Image:
-            source: 'logo.png'  # Your custom logo
-            size_hint_x: None
-            width: '32dp'
         
         Label:
             text: "Sol-Plex Pro [color=7aafff]Thinking[/color]"
@@ -34,7 +28,7 @@ BoxLayout:
             valign: 'center'
             text_size: self.size
 
-    # Main Scrollable Engine View
+    # Scrollable Output View
     ScrollView:
         BoxLayout:
             id: content_box
@@ -68,7 +62,7 @@ BoxLayout:
                     valign: 'center'
                     text_size: self.size
 
-            # AI Output Bubble
+            # AI Output Card
             BoxLayout:
                 orientation: 'vertical'
                 size_hint_y: None
@@ -91,7 +85,7 @@ BoxLayout:
                     halign: 'left'
                     valign: 'top'
 
-    # Bottom Control Bar
+    # Action Bar
     BoxLayout:
         size_hint_y: None
         height: '80dp'
@@ -100,7 +94,7 @@ BoxLayout:
         Button:
             text: "Run Thought Process"
             background_normal: ''
-            background_color: 0.28, 0.53, 0.96, 1  # Gemini Blue accent
+            background_color: 0.28, 0.53, 0.96, 1
             font_size: '16sp'
             bold: True
             on_press: app.start_thinking()
@@ -117,7 +111,6 @@ class SolPlexApp(App):
         thinking_label.text = "✨ Thinking (Analyzing state vectors & pipelines)..."
         output_text.text = ""
         
-        # Simulate step-by-step thinking response
         Clock.schedule_once(lambda dt: self.update_thinking("✨ Synthesizing optimal solution..."), 1.2)
         Clock.schedule_once(lambda dt: self.render_response(), 2.5)
 
