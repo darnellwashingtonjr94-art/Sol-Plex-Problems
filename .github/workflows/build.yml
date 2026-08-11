@@ -34,13 +34,7 @@ jobs:
           pip install "cython<3.0" buildozer
 
       - name: Build APK
-        env:
-          ACCEPT_SDK_LICENSES: '1'
         run: |
-          buildozer android debug
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: solplex-android-apk
-          path: bin/*.apk
+          mkdir -p ~/.android
+          touch ~/.android/repositories.cfg
+          yes | buildozer android debug
